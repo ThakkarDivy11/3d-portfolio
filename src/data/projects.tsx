@@ -1,4 +1,3 @@
-import AceTernityLogo from "@/components/logos/aceternity";
 import SlideShow from "@/components/slide-show";
 import { Button } from "@/components/ui/button";
 import { TypographyH3, TypographyP } from "@/components/ui/typography";
@@ -8,22 +7,13 @@ import { ReactNode } from "react";
 import { RiNextjsFill, RiNodejsFill, RiReactjsFill } from "react-icons/ri";
 import {
   SiChakraui,
-  SiDocker,
   SiExpress,
-  SiFirebase,
   SiJavascript,
   SiMongodb,
   SiPostgresql,
   SiPrisma,
-  SiReactquery,
-  SiSanity,
-  SiShadcnui,
-  SiSocketdotio,
-  SiSupabase,
   SiTailwindcss,
-  SiThreedotjs,
   SiTypescript,
-  SiVuedotjs,
 } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
 
