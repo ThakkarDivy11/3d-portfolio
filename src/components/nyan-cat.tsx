@@ -27,7 +27,7 @@ const NyanCat = () => {
   };
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "n") spawnDiv();
+      if (e.key === "d") spawnDiv();
     };
 
     window.addEventListener("keydown", handleKeyDown);
