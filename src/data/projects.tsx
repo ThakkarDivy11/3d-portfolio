@@ -104,31 +104,70 @@ const projects: Project[] = [
   },
 
   {
-    id: "couponluxury",
-    category: "Coupon Platform",
-    title: "Coupon Luxury",
-    src: "/assets/projects-screenshots/couponluxury/landing.png",
+    id: "ai-collection-engine",
+    category: "AI Platform",
+    title: "AI Collection Engine",
+    src: "/assets/projects-screenshots/aicollection/landing.png",
     screenshots: ["landing.png"],
     skills: {
-      frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.chakra],
-      backend: [PROJECT_SKILLS.node, PROJECT_SKILLS.express, PROJECT_SKILLS.prisma],
+      frontend: [
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.tailwind,
+      ],
+      backend: [
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.express,
+        PROJECT_SKILLS.mongo,
+      ],
     },
-    live: "https://www.couponluxury.com/",
+    live: "https://ai-collection-engineee.vercel.app/",
+    github: "https://github.com/ThakkarDivy11/ai-collection-engine",
     content: (
       <div>
-        <TypographyP className="font-mono">
-          Find best deals and discounts across multiple stores easily.
+        <TypographyP className="font-mono text-2xl text-center">
+          AI-powered tools collection & automation platform
         </TypographyP>
-        <ProjectsLinks live="https://www.couponluxury.com/" />
-        <SlideShow images={[`${BASE_PATH}/couponluxury/landing.png`]} />
+
+        <TypographyP className="font-mono">
+          AI Collection Engine is a powerful MERN-based platform that aggregates,
+          manages, and automates AI tools. It integrates Ollama and Mistral AI to
+          deliver intelligent responses, automate workflows, and provide a seamless
+          AI experience for users.
+        </TypographyP>
+
+        <ProjectsLinks
+          live="https://ai-collection-engineee.vercel.app/"
+          repo="https://github.com/ThakkarDivy11/ai-collection-engine"
+        />
+
+        <TypographyH3 className="my-4 mt-8">AI Integration</TypographyH3>
+        <p className="font-mono mb-2">
+          Integrated with Ollama and Mistral AI to provide real-time intelligent responses.
+        </p>
+
+        <TypographyH3 className="my-4 mt-8">Automation System</TypographyH3>
+        <p className="font-mono mb-2">
+          Daily scheduled automation tasks for managing AI workflows efficiently.
+        </p>
+
+        <TypographyH3 className="my-4 mt-8">AI Tools Collection</TypographyH3>
+        <p className="font-mono mb-2">
+          Centralized platform to explore and manage various AI tools in one place.
+        </p>
+
+        <TypographyH3 className="my-4 mt-8">Real-time Processing</TypographyH3>
+        <p className="font-mono mb-2">
+          Fast and dynamic processing using modern MERN stack architecture.
+        </p>
+
+        <SlideShow images={[`/assets/projects-screenshots/aicollection/landing.png`]} />
       </div>
     ),
   },
-
   {
     id: "portfolio",
     category: "Portfolio",
-    title: "My Portfolio",
+    title: "My 3D Portfolio",
     src: "/assets/projects-screenshots/portfolio/landing.png",
     screenshots: ["landing.png"],
     skills: {
@@ -140,15 +179,18 @@ const projects: Project[] = [
       ],
       backend: [],
     },
-    live: "http://divythakkar.vercel.app",
-    github: "https://github.com/divy-thakkar/Portfolio",
+    live: "https://3d-portfolio-mu-plum.vercel.app/",
+    github: "https://github.com/ThakkarDivy11/3d-portfolio",
     content: (
       <div>
-        <TypographyP className="font-mono">
-          Personal portfolio with modern UI and animations.
+        <TypographyP className="font-mono text-2xl text-center">
+          Interactive 3D developer portfolio
         </TypographyP>
-        <ProjectsLinks live="http://divythakkar.vercel.app" repo="https://github.com/divy-thakkar/Portfolio" />
-        <SlideShow images={[`${BASE_PATH}/portfolio/landing.png`]} />
+        <TypographyP className="font-mono">
+          Built with Three.js + React + GSAP for immersive 3D experience and animations.
+        </TypographyP>
+        <ProjectsLinks live="https://3d-portfolio-mu-plum.vercel.app/" repo="https://github.com/ThakkarDivy11/3d-portfolio" />
+        <SlideShow images={["/assets/projects-screenshots/portfolio/landing.png"]} />
       </div>
     ),
   },
