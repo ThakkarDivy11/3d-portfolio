@@ -168,7 +168,7 @@ const projects: Project[] = [
     id: "portfolio",
     category: "Portfolio",
     title: "My 3D Portfolio",
-    src: "/assets/projects-screenshots/portfolio/landing.png",
+    src: "/assets/projects-screenshots/cabzee/landing.png",
     screenshots: ["landing.png"],
     skills: {
       frontend: [
@@ -190,7 +190,7 @@ const projects: Project[] = [
           Built with Three.js + React + GSAP for immersive 3D experience and animations.
         </TypographyP>
         <ProjectsLinks live="https://3d-portfolio-mu-plum.vercel.app/" repo="https://github.com/ThakkarDivy11/3d-portfolio" />
-        <SlideShow images={["/assets/projects-screenshots/portfolio/landing.png"]} />
+        <SlideShow images={["/assets/projects-screenshots/portfolio/cabzee.png"]} />
       </div>
     ),
   },
