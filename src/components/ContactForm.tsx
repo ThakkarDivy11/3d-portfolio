@@ -116,7 +116,7 @@ const ContactForm = () => {
         />
         {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
         <p className="text-sm text-muted-foreground">
-          I&apos;ll never share your data with anyone else. Pinky promise!
+          I&apos;ll never share your data with anyone else.
         </p>
       </div>
       <Button
