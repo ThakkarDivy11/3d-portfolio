@@ -1,4 +1,5 @@
 import SlideShow from "@/components/slide-show";
+import { FullscreenIframe } from "@/components/sections/fullscreen-iframe";
 import { Button } from "@/components/ui/button";
 import { TypographyH3, TypographyP } from "@/components/ui/typography";
 import { ArrowUpRight } from "lucide-react";
@@ -98,7 +99,7 @@ const projects: Project[] = [
           real-time tracking, and secure payments.
         </TypographyP>
         <ProjectsLinks live="https://cabzeeeee-main.vercel.app/" repo="https://github.com/ThakkarDivy11/cabzeeeee-main" />
-        <SlideShow images={[`/assets/projects-screenshots/cabzee/rider.png`]} />
+        <FullscreenIframe src="/cabzee-loader.html" title="Cabzee Live Simulation" />
       </div>
     ),
   },

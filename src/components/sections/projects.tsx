@@ -10,44 +10,139 @@ import {
 import { FloatingDock } from "../ui/floating-dock";
 import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { motion } from "motion/react";
+import { ArrowUpRight, Maximize2 } from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "motion/react";
 
 import projects, { Project } from "@/data/projects";
 import { SectionHeader } from "./section-header";
 
 import SectionWrapper from "../ui/section-wrapper";
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const cardItemVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+      damping: 15,
+      duration: 0.6
+    },
+  },
+};
+
 const ProjectsSection = () => {
   return (
     <SectionWrapper id="projects" className="max-w-7xl mx-auto py-20 z-10">
       <SectionHeader id="projects" title="Projects" className="mb-12 md:mb-20" />
-      <div className="grid grid-cols-1 md:grid-cols-3">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 px-4"
+      >
         {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <motion.div key={project.id} variants={cardItemVariants} className="flex justify-center">
+            <ProjectCard project={project} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </SectionWrapper>
   );
 };
 
 const ProjectCard = ({ project }: { project: Project }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15 });
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const spotlightX = useMotionValue(0);
+  const spotlightY = useMotionValue(0);
+  const spotlightXSpring = useSpring(spotlightX, { stiffness: 200, damping: 25 });
+  const spotlightYSpring = useSpring(spotlightY, { stiffness: 200, damping: 25 });
+
+  const backgroundTemplate = useMotionTemplate`radial-gradient(220px circle at ${spotlightXSpring}px ${spotlightYSpring}px, hsla(20, 100%, 70%, 0.12), transparent 85%)`;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    
+    const mouseX = (e.clientX - rect.left) / width - 0.5;
+    const mouseY = (e.clientY - rect.top) / height - 0.5;
+    x.set(mouseX);
+    y.set(mouseY);
+
+    spotlightX.set(e.clientX - rect.left);
+    spotlightY.set(e.clientY - rect.top);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    spotlightX.set(0);
+    spotlightY.set(0);
+  };
+
   return (
     <div className="flex items-center justify-center">
       <ResponsiveDialog>
         <ResponsiveDialogTrigger className="bg-transparent flex justify-center">
-          <div
-            className="relative w-[400px] h-auto rounded-lg overflow-hidden group cursor-pointer border border-border/50 dark:border-border/30"
-            style={{ aspectRatio: "3/2" }}
+          <motion.div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              rotateX,
+              rotateY,
+              transformStyle: "preserve-3d",
+              aspectRatio: "3/2"
+            }}
+            className="relative w-[400px] h-auto rounded-lg overflow-hidden group cursor-pointer border border-border/50 dark:border-border/30 shadow-md hover:shadow-xl transition-all duration-300 bg-background"
           >
+            {/* Spotlight Overlay */}
+            <motion.div
+              style={{
+                background: backgroundTemplate,
+              }}
+              className="absolute inset-0 z-10 pointer-events-none"
+            />
+            
+            {/* Image */}
             <Image
-              className="absolute w-full h-full top-0 left-0 group-hover:scale-[1.05] transition-all duration-500"
+              className="absolute w-full h-full top-0 left-0 group-hover:scale-[1.03] transition-transform duration-500"
               src={project.src}
               alt={project.title}
               width={300}
               height={300}
+              style={{
+                transform: "translateZ(8px)"
+              }}
             />
-            <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-background via-background/85 to-transparent pointer-events-none">
+            
+            {/* Card Content Overlay */}
+            <div 
+              className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none z-20"
+              style={{
+                transform: "translateZ(16px)"
+              }}
+            >
               <div className="flex flex-row h-full items-end justify-between p-6">
                 <div className="flex flex-col items-start">
                   <div className="text-lg text-left font-bold">{project.title}</div>
@@ -60,7 +155,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </ResponsiveDialogTrigger>
 
         <ResponsiveDialogContent className="md:max-w-4xl md:h-[85vh] md:!flex md:flex-col md:overflow-hidden md:p-0 md:gap-0">
