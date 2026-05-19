@@ -45,8 +45,8 @@ const AnimatedBackground = () => {
       setSelectedSkill(null);
       selectedSkillRef.current = null;
       if (splineApp.getVariable("heading") && splineApp.getVariable("desc")) {
-        splineApp.setVariable("heading", "");
-        splineApp.setVariable("desc", "");
+        splineApp.setVariable("heading", " ");
+        splineApp.setVariable("desc", " ");
       }
     } else {
       if (!selectedSkillRef.current || selectedSkillRef.current.name !== e.target.name) {
@@ -77,8 +77,8 @@ const AnimatedBackground = () => {
     splineApp.addEventListener("keyUp", () => {
       if (!splineApp || isInputFocused()) return;
       playReleaseSound();
-      splineApp.setVariable("heading", "");
-      splineApp.setVariable("desc", "");
+      splineApp.setVariable("heading", " ");
+      splineApp.setVariable("desc", " ");
     });
     splineApp.addEventListener("keyDown", (e) => {
       if (!splineApp || isInputFocused()) return;
@@ -143,8 +143,10 @@ const AnimatedBackground = () => {
 
     // Section transitions
     createSectionTimeline("#skills", "skills", "hero");
-    createSectionTimeline("#projects", "projects", "skills", "top 70%");
-    createSectionTimeline("#contact", "contact", "projects", "top 30%");
+    createSectionTimeline("#experience", "experience", "skills", "top 70%");
+    createSectionTimeline("#projects", "projects", "experience", "top 70%");
+    createSectionTimeline("#blog", "blog", "projects", "top 70%");
+    createSectionTimeline("#contact", "contact", "blog", "top 30%");
   };
 
   const getBongoAnimation = () => {
@@ -371,8 +373,11 @@ const AnimatedBackground = () => {
     const manageAnimations = async () => {
       // Reset text if not in skills
       if (activeSection !== "skills") {
-        splineApp.setVariable("heading", "");
-        splineApp.setVariable("desc", "");
+        splineApp.setVariable("heading", " ");
+        splineApp.setVariable("desc", " ");
+      } else if (!selectedSkillRef.current) {
+        splineApp.setVariable("heading", " ");
+        splineApp.setVariable("desc", " ");
       }
 
       // Handle Rotate/Teardown Tweens
@@ -427,7 +432,9 @@ const AnimatedBackground = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Spline
-        className="w-full h-full fixed"
+        className={`w-full h-full fixed transition-opacity duration-500 ${
+          activeSection === "experience" || activeSection === "projects" || activeSection === "blog" ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
         ref={splineContainer}
         onLoad={(app: Application) => {
           setSplineApp(app);

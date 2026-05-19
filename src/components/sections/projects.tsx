@@ -20,8 +20,8 @@ import SectionWrapper from "../ui/section-wrapper";
 
 const ProjectsSection = () => {
   return (
-    <SectionWrapper id="projects" className="max-w-7xl mx-auto md:h-[130vh]">
-      <SectionHeader id="projects" title="Projects" />
+    <SectionWrapper id="projects" className="max-w-7xl mx-auto py-20 z-10">
+      <SectionHeader id="projects" title="Projects" className="mb-12 md:mb-20" />
       <div className="grid grid-cols-1 md:grid-cols-3">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
@@ -37,21 +37,26 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <ResponsiveDialog>
         <ResponsiveDialogTrigger className="bg-transparent flex justify-center">
           <div
-            className="relative w-[400px] h-auto rounded-lg overflow-hidden"
+            className="relative w-[400px] h-auto rounded-lg overflow-hidden group cursor-pointer"
             style={{ aspectRatio: "3/2" }}
           >
             <Image
-              className="absolute w-full h-full top-0 left-0 hover:scale-[1.05] transition-all"
+              className="absolute w-full h-full top-0 left-0 group-hover:scale-[1.05] transition-all duration-500"
               src={project.src}
               alt={project.title}
               width={300}
               height={300}
             />
             <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-background via-background/85 to-transparent pointer-events-none">
-              <div className="flex flex-col h-full items-start justify-end p-6">
-                <div className="text-lg text-left">{project.title}</div>
-                <div className="text-xs bg-primary text-primary-foreground rounded-lg w-fit px-2">
-                  {project.category}
+              <div className="flex flex-row h-full items-end justify-between p-6">
+                <div className="flex flex-col items-start">
+                  <div className="text-lg text-left font-bold">{project.title}</div>
+                  <div className="text-xs mt-1 bg-primary text-primary-foreground rounded-lg w-fit px-2 py-0.5">
+                    {project.category}
+                  </div>
+                </div>
+                <div className="flex items-center text-xs font-semibold text-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+                  View details <ArrowUpRight className="w-3 h-3 ml-1" />
                 </div>
               </div>
             </div>

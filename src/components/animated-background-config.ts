@@ -1,10 +1,10 @@
-export type Section = "hero" | "about" | "skills" | "experience" | "projects" | "contact";
+export type Section = "hero" | "about" | "skills" | "experience" | "projects" | "blog" | "contact";
 
 export const STATES = {
   hero: {
     desktop: {
       scale: { x: 0.20, y: 0.20, z: 0.20 },
-      position: { x: 225, y: -100, z: 0 },
+      position: { x: 300, y: -100, z: 0 },
       rotation: { x: 0, y: 0, z: 0 },
     },
     mobile: {
@@ -56,7 +56,7 @@ export const STATES = {
   skills: {
     desktop: {
       scale: { x: 0.25, y: 0.25, z: 0.25 },
-      position: { x: 0, y: -40, z: 0 },
+      position: { x: 0, y: -100, z: 0 },
       rotation: {
         x: 0,
         y: Math.PI / 12,
@@ -74,6 +74,26 @@ export const STATES = {
     },
   },
   projects: {
+    desktop: {
+      scale: { x: 0.25, y: 0.25, z: 0.25 },
+      position: { x: 0, y: -40, z: 0 },
+      rotation: {
+        x: Math.PI,
+        y: Math.PI / 3,
+        z: Math.PI,
+      },
+    },
+    mobile: {
+      scale: { x: 0.3, y: 0.3, z: 0.3 },
+      position: { x: 0, y: 150, z: 0 },
+      rotation: {
+        x: Math.PI,
+        y: Math.PI / 3,
+        z: Math.PI,
+      },
+    },
+  },
+  blog: {
     desktop: {
       scale: { x: 0.25, y: 0.25, z: 0.25 },
       position: { x: 0, y: -40, z: 0 },
