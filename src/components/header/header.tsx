@@ -49,8 +49,8 @@ const Header = ({ loader }: HeaderProps) => {
       >
       </div> */}
       <div className={cn(styles.bar, "flex items-center w-full relative h-14")}>
-        <Link href="/" className={cn(styles.logo, "flex items-center justify-center")}>
-          <Button variant={"link"} className="text-md">
+        <Link href="/" className={cn(styles.logo, "flex items-center justify-center hover:no-underline")}>
+          <Button variant={"link"} className="text-lg font-display tracking-tight text-foreground hover:no-underline">
             {config.author}
           </Button>
         </Link>

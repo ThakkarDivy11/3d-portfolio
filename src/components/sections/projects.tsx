@@ -37,7 +37,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <ResponsiveDialog>
         <ResponsiveDialogTrigger className="bg-transparent flex justify-center">
           <div
-            className="relative w-[400px] h-auto rounded-lg overflow-hidden group cursor-pointer"
+            className="relative w-[400px] h-auto rounded-lg overflow-hidden group cursor-pointer border border-border/50 dark:border-border/30"
             style={{ aspectRatio: "3/2" }}
           >
             <Image
