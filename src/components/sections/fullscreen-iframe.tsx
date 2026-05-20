@@ -39,17 +39,27 @@ export const FullscreenIframe = ({ src, title }: { src: string; title: string })
     const updateScale = () => {
       if (!containerRef.current) return;
       const containerWidth = containerRef.current.clientWidth;
+      if (containerWidth === 0) return;
       const virtualWidth = 1024;
       setScale(containerWidth / virtualWidth);
     };
 
     updateScale();
-    // Delay to let the parent dialog animate and render its final width
-    const timer = setTimeout(updateScale, 150);
+    // Multiple delayed checks to catch dialog animation completion
+    const t1 = setTimeout(updateScale, 100);
+    const t2 = setTimeout(updateScale, 300);
+    const t3 = setTimeout(updateScale, 600);
+
+    // ResizeObserver watches for container size changes
+    const ro = new ResizeObserver(updateScale);
+    if (containerRef.current) ro.observe(containerRef.current);
 
     window.addEventListener("resize", updateScale);
     return () => {
-      clearTimeout(timer);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      ro.disconnect();
       window.removeEventListener("resize", updateScale);
     };
   }, [isFullscreen]);
@@ -60,7 +70,7 @@ export const FullscreenIframe = ({ src, title }: { src: string; title: string })
   return (
     <div 
       ref={containerRef}
-      className={`relative w-full rounded-xl overflow-hidden border border-border/50 dark:border-border/30 shadow-xl bg-black transition-all group mt-6 ${
+      className={`fullscreen-iframe-wrapper relative w-full rounded-xl overflow-hidden border border-border/50 dark:border-border/30 shadow-xl bg-black transition-all group ${
         isFullscreen ? "h-screen w-screen rounded-none border-none" : ""
       }`}
       style={

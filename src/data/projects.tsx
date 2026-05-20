@@ -91,15 +91,19 @@ const projects: Project[] = [
     github: "https://github.com/ThakkarDivy11/cabzeeeee-main",
     content: (
       <div>
-        <TypographyP className="text-2xl text-center font-mono">
-          Smart cab booking with real-time tracking
-        </TypographyP>
-        <TypographyP className="font-mono">
-          Cabzee is a MERN stack ride booking platform with AI chatbot,
-          real-time tracking, and secure payments.
-        </TypographyP>
-        <ProjectsLinks live="https://cabzeeeee-main.vercel.app/" repo="https://github.com/ThakkarDivy11/cabzeeeee-main" />
-        <FullscreenIframe src="/cabzee-loader.html" title="Cabzee Live Simulation" />
+        <div className="px-8 w-full overflow-hidden">
+          <TypographyP className="text-2xl text-center font-mono">
+            Smart cab booking with real-time tracking
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Cabzee is a MERN stack ride booking platform with AI chatbot,
+            real-time tracking, and secure payments.
+          </TypographyP>
+          <ProjectsLinks live="https://cabzeeeee-main.vercel.app/" repo="https://github.com/ThakkarDivy11/cabzeeeee-main" />
+        </div>
+        <div className="mt-4">
+          <FullscreenIframe src="/cabzee-loader.html" title="Cabzee Live Simulation" />
+        </div>
       </div>
     ),
   },
@@ -125,43 +129,46 @@ const projects: Project[] = [
     github: "https://github.com/ThakkarDivy11/ai-collection-engine",
     content: (
       <div>
-        <TypographyP className="font-mono text-2xl text-center">
-          AI-powered tools collection & automation platform
-        </TypographyP>
+        <div className="px-8 w-full overflow-hidden">
+          <TypographyP className="font-mono text-2xl text-center">
+            AI-powered tools collection & automation platform
+          </TypographyP>
 
-        <TypographyP className="font-mono">
-          AI Collection Engine is a powerful MERN-based platform that aggregates,
-          manages, and automates AI tools. It integrates Ollama and Mistral AI to
-          deliver intelligent responses, automate workflows, and provide a seamless
-          AI experience for users.
-        </TypographyP>
+          <TypographyP className="font-mono">
+            AI Collection Engine is a powerful MERN-based platform that aggregates,
+            manages, and automates AI tools. It integrates Ollama and Mistral AI to
+            deliver intelligent responses, automate workflows, and provide a seamless
+            AI experience for users.
+          </TypographyP>
 
-        <ProjectsLinks
-          live="https://ai-collection-engineee.vercel.app/"
-          repo="https://github.com/ThakkarDivy11/ai-collection-engine"
-        />
+          <ProjectsLinks
+            live="https://ai-collection-engineee.vercel.app/"
+            repo="https://github.com/ThakkarDivy11/ai-collection-engine"
+          />
 
-        <TypographyH3 className="my-4 mt-8">AI Integration</TypographyH3>
-        <p className="font-mono mb-2">
-          Integrated with Ollama and Mistral AI to provide real-time intelligent responses.
-        </p>
+          <TypographyH3 className="my-4 mt-8">AI Integration</TypographyH3>
+          <p className="font-mono mb-2">
+            Integrated with Ollama and Mistral AI to provide real-time intelligent responses.
+          </p>
 
-        <TypographyH3 className="my-4 mt-8">Automation System</TypographyH3>
-        <p className="font-mono mb-2">
-          Daily scheduled automation tasks for managing AI workflows efficiently.
-        </p>
+          <TypographyH3 className="my-4 mt-8">Automation System</TypographyH3>
+          <p className="font-mono mb-2">
+            Daily scheduled automation tasks for managing AI workflows efficiently.
+          </p>
 
-        <TypographyH3 className="my-4 mt-8">AI Tools Collection</TypographyH3>
-        <p className="font-mono mb-2">
-          Centralized platform to explore and manage various AI tools in one place.
-        </p>
+          <TypographyH3 className="my-4 mt-8">AI Tools Collection</TypographyH3>
+          <p className="font-mono mb-2">
+            Centralized platform to explore and manage various AI tools in one place.
+          </p>
 
-        <TypographyH3 className="my-4 mt-8">Real-time Processing</TypographyH3>
-        <p className="font-mono mb-2">
-          Fast and dynamic processing using modern MERN stack architecture.
-        </p>
-
-        <FullscreenIframe src="/aicollection-loader.html" title="AI Collection Engine Live Simulation" />
+          <TypographyH3 className="my-4 mt-8">Real-time Processing</TypographyH3>
+          <p className="font-mono mb-2">
+            Fast and dynamic processing using modern MERN stack architecture.
+          </p>
+        </div>
+        <div className="mt-4">
+          <FullscreenIframe src="/aicollection-loader.html" title="AI Collection Engine Live Simulation" />
+        </div>
       </div>
     ),
   },

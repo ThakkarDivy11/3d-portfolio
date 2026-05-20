@@ -169,7 +169,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </motion.div>
         </ResponsiveDialogTrigger>
 
-        <ResponsiveDialogContent className="md:max-w-4xl md:h-[85vh] md:!flex md:flex-col md:overflow-hidden md:p-0 md:gap-0">
+        <ResponsiveDialogContent className="md:max-w-5xl md:w-[calc(100vw-3rem)] md:h-[85vh] md:!flex md:flex-col md:overflow-hidden md:p-0 md:gap-0">
           {/* Sticky header */}
           <div className="shrink-0 border-b border-border bg-background/80 backdrop-blur-sm px-8 py-5">
             <div className="flex items-center justify-between gap-4">
@@ -202,14 +202,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </div>
 
           {/* Scrollable content */}
-          <ScrollArea className="flex-1" type="always" data-lenis-prevent>
-            <div className="px-8 py-8">
+          <ScrollArea className="flex-1 min-h-0" type="always" data-lenis-prevent>
+            <div className="py-8 pb-10 w-full overflow-x-hidden">
               {/* Tech stack */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="flex flex-col md:flex-row gap-6 md:gap-10 mb-10"
+                className="flex flex-col md:flex-row gap-6 md:gap-10 mb-10 px-8"
               >
                 {project.skills.frontend?.length > 0 && (
                   <div className="flex flex-col items-center md:items-start gap-2">
@@ -230,9 +230,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
               </motion.div>
 
               {/* Divider */}
-              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-10" />
+              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-10 mx-8" />
 
-              {/* Project content */}
+              {/* Project content - padding managed per-section in data file */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
