@@ -11,14 +11,14 @@ import { FloatingDock } from "../ui/floating-dock";
 import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
 import { ArrowUpRight, Maximize2 } from "lucide-react";
-import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate, Variants } from "motion/react";
 
 import projects, { Project } from "@/data/projects";
 import { SectionHeader } from "./section-header";
 
 import SectionWrapper from "../ui/section-wrapper";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -27,7 +27,7 @@ const containerVariants = {
   },
 };
 
-const cardItemVariants = {
+const cardItemVariants: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: {
     opacity: 1,
