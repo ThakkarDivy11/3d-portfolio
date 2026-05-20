@@ -90,8 +90,8 @@ const projects: Project[] = [
     github: "https://github.com/ThakkarDivy11/cabzeeeee-main",
     content: (
       <div>
-        <div className="px-8 w-full overflow-hidden">
-          <TypographyP className="text-2xl text-center font-mono">
+        <div className="px-4 md:px-8 w-full overflow-hidden">
+          <TypographyP className="text-lg md:text-2xl text-center font-mono break-words">
             Smart cab booking with real-time tracking
           </TypographyP>
           <TypographyP className="font-mono">
@@ -128,8 +128,8 @@ const projects: Project[] = [
     github: "https://github.com/ThakkarDivy11/ai-collection-engine",
     content: (
       <div>
-        <div className="px-8 w-full overflow-hidden">
-          <TypographyP className="font-mono text-2xl text-center">
+        <div className="px-4 md:px-8 w-full overflow-hidden">
+          <TypographyP className="font-mono text-lg md:text-2xl text-center break-words">
             AI-powered tools collection & automation platform
           </TypographyP>
 
@@ -190,8 +190,8 @@ const projects: Project[] = [
     github: "https://github.com/ThakkarDivy11/3d-portfolio",
     content: (
       <div>
-        <div className="px-8 w-full overflow-hidden">
-          <TypographyP className="font-mono text-2xl text-center">
+        <div className="px-4 md:px-8 w-full overflow-hidden">
+          <TypographyP className="font-mono text-lg md:text-2xl text-center break-words">
             Interactive 3D developer portfolio
           </TypographyP>
           <TypographyP className="font-mono">

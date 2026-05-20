@@ -59,14 +59,16 @@ const Header = ({ loader }: HeaderProps) => {
           <BottomNavBar stickyBottom={false} />
         </div>
 
-        <div className="absolute right-0 flex items-center gap-4 pr-4">
-          <FunnyThemeToggle className="w-6 h-6 hidden md:flex" />
+        <div className="absolute right-0 flex items-center gap-2 md:gap-4 pr-3 md:pr-4">
+          <FunnyThemeToggle className="w-5 h-5 md:w-6 md:h-6" />
           {isHome && process.env.NEXT_PUBLIC_WS_URL && <OnlineUsers />}
           {config.githubUsername && config.githubRepo && (
-            <GitHubStarsButton
-              username={config.githubUsername}
-              repo={config.githubRepo}
-            />
+            <div className="hidden md:flex">
+              <GitHubStarsButton
+                username={config.githubUsername}
+                repo={config.githubRepo}
+              />
+            </div>
           )}
         </div>
       </div>

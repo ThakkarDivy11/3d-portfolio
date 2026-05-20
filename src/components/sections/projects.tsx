@@ -171,30 +171,30 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
         <ResponsiveDialogContent className="md:max-w-5xl md:w-[calc(100vw-3rem)] md:h-[85vh] md:!flex md:flex-col md:overflow-hidden md:p-0 md:gap-0">
           {/* Sticky header */}
-          <div className="shrink-0 border-b border-border bg-background/80 backdrop-blur-sm px-8 py-5">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4 min-w-0">
-                <ResponsiveDialogTitle className="font-display text-xl md:text-2xl font-bold text-foreground tracking-tight truncate">
+          <div className="shrink-0 border-b border-border bg-background/80 backdrop-blur-sm px-4 md:px-8 py-4 md:py-5">
+            <div className="flex items-center justify-between gap-2 md:gap-4">
+              <div className="flex items-center gap-2 md:gap-4 min-w-0">
+                <ResponsiveDialogTitle className="font-display text-base md:text-2xl font-bold text-foreground tracking-tight truncate">
                   {project.title}
                 </ResponsiveDialogTitle>
-                <span className="shrink-0 text-[11px] uppercase tracking-widest text-muted-foreground border border-border rounded-full px-3 py-0.5">
+                <span className="hidden sm:inline shrink-0 text-[11px] uppercase tracking-widest text-muted-foreground border border-border rounded-full px-3 py-0.5">
                   {project.category}
                 </span>
               </div>
-              <div className="shrink-0 flex items-center gap-4">
+              <div className="shrink-0 flex items-center gap-2 md:gap-4">
                 {project.github && (
                   <Link
                     href={project.github}
                     target="_blank"
-                    className="text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
+                    className="hidden sm:inline text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
                   >
                     Source
                   </Link>
                 )}
                 <Link href={project.live} target="_blank">
-                  <button className="group flex items-center gap-2 bg-primary text-primary-foreground text-sm font-medium px-4 py-1.5 rounded-full hover:bg-primary/80 transition-colors">
+                  <button className="group flex items-center gap-1.5 bg-primary text-primary-foreground text-xs md:text-sm font-medium px-3 md:px-4 py-1.5 rounded-full hover:bg-primary/80 transition-colors">
                     Visit
-                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight className="w-3 h-3 md:w-3.5 md:h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </button>
                 </Link>
               </div>
@@ -203,13 +203,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
           {/* Scrollable content */}
           <ScrollArea className="flex-1 min-h-0" type="always" data-lenis-prevent>
-            <div className="py-8 pb-10 w-full overflow-x-hidden">
+            <div className="py-4 md:py-8 pb-10 w-full overflow-x-hidden">
               {/* Tech stack */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="flex flex-col md:flex-row gap-6 md:gap-10 mb-10 px-8"
+                className="flex flex-col md:flex-row gap-6 md:gap-10 mb-10 px-4 md:px-8"
               >
                 {project.skills.frontend?.length > 0 && (
                   <div className="flex flex-col items-center md:items-start gap-2">
@@ -230,7 +230,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               </motion.div>
 
               {/* Divider */}
-              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-10 mx-8" />
+              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-10 mx-4 md:mx-8" />
 
               {/* Project content - padding managed per-section in data file */}
               <motion.div

@@ -26,8 +26,8 @@ const HeroSection = () => {
           className={cn(
             "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2]",
             "col-span-1",
-            "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-28 sm:pb-16 md:p-20 lg:p-24 xl:p-28"
+            "flex flex-col justify-center items-center md:items-start",
+            "px-6 pt-24 pb-16 md:p-20 lg:p-24 xl:p-28"
           )}
         >
           {!isLoading && (
@@ -37,7 +37,7 @@ const HeroSection = () => {
                   <p
                     className={cn(
                       "md:self-start mt-4 font-thin text-md text-slate-500 dark:text-zinc-400",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
+                      "cursor-default font-display text-lg md:text-xl text-center md:text-left"
                     )}
                   >
                     Hi, I am
@@ -50,9 +50,9 @@ const HeroSection = () => {
                     <TooltipTrigger asChild>
                       <h1
                         className={cn(
-                          "-ml-[6px] leading-none font-thin text-transparent text-slate-800 text-left",
-                          "font-thin text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
-                          "cursor-default text-edge-outline font-display "
+                          "leading-none font-thin text-transparent text-slate-800 text-center md:text-left",
+                          "font-thin text-6xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
+                          "cursor-default text-edge-outline font-display"
                         )}
                       >
                         {config.author.split(" ")[0]}
@@ -73,14 +73,14 @@ const HeroSection = () => {
                   <p
                     className={cn(
                       "md:self-start md:mt-4 font-thin text-md text-slate-500 dark:text-zinc-400",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
+                      "cursor-default font-display text-lg md:text-xl text-center md:text-left"
                     )}
                   >
                     A Full Stack Web Developer
                   </p>
                 </BlurIn>
               </div>
-              <div className="mt-8 flex flex-col gap-3 w-fit">
+              <div className="mt-8 flex flex-col gap-3 w-fit mx-auto md:mx-0">
                 <Link
                   href={
                     "https://drive.google.com/file/d/1KY-D5DEbPpt1AwkGPaZpGLvr_0t4OBZa/view?usp=drive_link"
