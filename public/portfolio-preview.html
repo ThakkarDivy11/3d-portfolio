@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divy Thakkar – 3D Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#080810;--s:rgba(255,255,255,0.04);--b:rgba(255,255,255,0.08);--a:#f97316;--a2:#a78bfa;--t:#f1f5f9;--m:#64748b;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--t);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid var(--b);background:rgba(8,8,16,0.85);backdrop-filter:blur(16px);z-index:100;}
+.logo{font-size:15px;font-weight:600;}.logo span{color:var(--a);}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{font-size:12px;color:var(--m);text-decoration:none;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--t);}
+.hire-btn{font-size:13px;font-weight:600;color:var(--bg);background:var(--t);border:none;padding:8px 18px;border-radius:100px;cursor:pointer;}
+
+/* SHARED */
+section{padding:90px 60px;position:relative;}
+.section-label{font-size:11px;font-weight:600;color:var(--a);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px;}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;}
+.section-sub{font-size:15px;color:var(--m);line-height:1.7;max-width:520px;}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--b) 1px,transparent 1px),linear-gradient(90deg,var(--b) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;opacity:.5;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 60px 60px;position:relative;overflow:hidden;}
+.hero-orb1{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(249,115,22,.15) 0%,transparent 70%);top:-100px;left:-100px;pointer-events:none;}
+.hero-orb2{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(167,139,250,.1) 0%,transparent 70%);bottom:0;right:0;pointer-events:none;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-content{position:relative;z-index:2;max-width:600px;}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--b);border-radius:100px;background:var(--s);font-size:11px;color:var(--m);margin-bottom:24px;letter-spacing:.06em;text-transform:uppercase;}
+.bdot{width:6px;height:6px;border-radius:50%;background:var(--a);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
+.greeting{font-size:14px;color:var(--m);margin-bottom:6px;}
+.name{font-size:clamp(56px,8vw,92px);font-weight:700;line-height:.92;letter-spacing:-.04em;background:linear-gradient(135deg,#fff 0%,#94a3b8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px;}
+.role{font-size:16px;color:var(--m);margin-bottom:36px;line-height:1.6;}
+.role em{color:var(--a);font-style:normal;font-weight:600;}
+.cta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.btn-p{display:flex;align-items:center;gap:7px;padding:11px 24px;background:var(--t);color:var(--bg);border:none;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
+.btn-o{padding:10px 20px;background:transparent;color:var(--t);border:1px solid var(--b);border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;}
+.icon-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--b);border-radius:9px;background:var(--s);cursor:pointer;}
+.icon-btn svg{width:14px;height:14px;fill:var(--m);}
+.tech-pills{position:absolute;right:50px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:2;}
+.pill{display:flex;align-items:center;gap:9px;padding:9px 14px;background:var(--s);border:1px solid var(--b);border-radius:10px;font-size:12px;font-weight:500;white-space:nowrap;}
+.pill-icon{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px;}
+.project-card{border:1px solid var(--b);border-radius:16px;overflow:hidden;background:var(--s);transition:border-color .3s,transform .3s;}
+.project-card:hover{border-color:rgba(249,115,22,.3);transform:translateY(-4px);}
+.card-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;overflow:hidden;}
+.card-body{padding:16px;}
+.card-tag{font-size:10px;font-weight:600;color:var(--a);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.card-title{font-size:16px;font-weight:600;margin-bottom:6px;}
+.card-desc{font-size:12px;color:var(--m);line-height:1.6;}
+.card-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.tech-tag{font-size:10px;padding:3px 8px;border:1px solid var(--b);border-radius:100px;color:var(--m);}
+
+/* SKILLS */
+.skills-section{background:rgba(255,255,255,.01);}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px;}
+.skill-card{padding:20px;border:1px solid var(--b);border-radius:14px;background:var(--s);transition:border-color .3s,transform .3s;}
+.skill-card:hover{border-color:rgba(167,139,250,.3);transform:translateY(-3px);}
+.skill-icon{font-size:24px;margin-bottom:10px;}
+.skill-name{font-size:14px;font-weight:600;margin-bottom:4px;}
+.skill-level{font-size:11px;color:var(--m);margin-bottom:10px;}
+.skill-bar{height:3px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--a2),var(--a));}
+
+/* EXPERIENCE */
+.exp-list{margin-top:36px;display:flex;flex-direction:column;gap:0;}
+.exp-item{display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--b);}
+.exp-item:last-child{border-bottom:none;}
+.exp-dot-col{display:flex;flex-direction:column;align-items:center;gap:0;}
+.exp-dot{width:10px;height:10px;border-radius:50%;background:var(--a);margin-top:4px;flex-shrink:0;}
+.exp-line{width:1px;flex:1;background:var(--b);margin-top:6px;}
+.exp-content{flex:1;}
+.exp-company{font-size:11px;color:var(--a);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.exp-role{font-size:16px;font-weight:600;margin-bottom:4px;}
+.exp-date{font-size:12px;color:var(--m);margin-bottom:8px;}
+.exp-desc{font-size:13px;color:var(--m);line-height:1.7;}
+
+/* CONTACT */
+.contact-section{background:linear-gradient(135deg,rgba(249,115,22,.05) 0%,rgba(167,139,250,.05) 100%);}
+.contact-box{border:1px solid var(--b);border-radius:20px;padding:48px;text-align:center;background:var(--s);backdrop-filter:blur(12px);max-width:500px;margin:40px auto 0;}
+.contact-title{font-size:28px;font-weight:700;margin-bottom:10px;}
+.contact-sub{font-size:14px;color:var(--m);margin-bottom:28px;line-height:1.7;}
+.contact-btn{padding:14px 36px;background:var(--a);color:#fff;border:none;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+.contact-email{margin-top:20px;font-size:13px;color:var(--m);}
+.contact-email a{color:var(--t);text-decoration:none;}
+
+/* FOOTER */
+footer{padding:24px 60px;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;}
+.footer-copy{font-size:12px;color:var(--m);}
+.footer-links{display:flex;gap:16px;}
+.footer-links a{font-size:12px;color:var(--m);text-decoration:none;}
+
+/* ANIMATIONS */
+@keyframes float1{0%,100%{transform:translateX(0);}50%{transform:translateX(-5px);}}
+@keyframes float2{0%,100%{transform:translateX(0);}50%{transform:translateX(-3px);}}
+.pill:nth-child(1){animation:float1 4s ease-in-out infinite;}
+.pill:nth-child(2){animation:float2 5s ease-in-out .5s infinite;}
+.pill:nth-child(3){animation:float1 4.5s ease-in-out 1s infinite;}
+.pill:nth-child(4){animation:float2 5.5s ease-in-out .3s infinite;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Divy <span>Thakkar</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hire-btn">Hire Me</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-content">
+    <div class="badge"><div class="bdot"></div>Available for work</div>
+    <p class="greeting">Hi, I am</p>
+    <h1 class="name">Divy<br>Thakkar</h1>
+    <p class="role">A <em>Full Stack Web Developer</em> crafting<br>immersive digital experiences with 3D & animation.</p>
+    <div class="cta-row">
+      <button class="btn-p">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
+        Resume
+      </button>
+      <button class="btn-o">Hire Me</button>
+      <div class="icon-btn"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+      <div class="icon-btn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+    </div>
+  </div>
+  <div class="tech-pills">
+    <div class="pill"><div class="pill-icon" style="background:rgba(0,0,0,.5);color:#fff;">N</div>Next.js 14</div>
+    <div class="pill"><div class="pill-icon" style="background:rgba(97,218,251,.15);color:#61dafb;">R</div>React</div>
+    <div class="pill"><div class="pill-icon" style="background:rgba(59,130,246,.15);color:#3b82f6;">3</div>Three.js</div>
+    <div class="pill"><div class="pill-icon" style="background:rgba(16,185,129,.15);color:#10b981;">G</div>GSAP</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="padding:80px 60px;">
+  <div class="grid-bg"></div>
+  <div class="section-label">Work</div>
+  <h2 class="section-title">Featured Projects</h2>
+  <p class="section-sub">A collection of projects built with modern web technologies.</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="card-img" style="background:linear-gradient(135deg,#06060a,#1a1a2e);color:#FFD000;">🚕</div>
+      <div class="card-body">
+        <div class="card-tag">Ride Booking Platform</div>
+        <div class="card-title">Cabzee</div>
+        <div class="card-desc">MERN stack ride booking platform with AI chatbot, real-time tracking, and secure payments.</div>
+        <div class="card-pills"><span class="tech-tag">React</span><span class="tech-tag">Node.js</span><span class="tech-tag">MongoDB</span></div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="card-img" style="background:linear-gradient(135deg,#0b1528,#112740);color:#38bdf8;">🤖</div>
+      <div class="card-body">
+        <div class="card-tag">AI Platform</div>
+        <div class="card-title">AI Collection Engine</div>
+        <div class="card-desc">MERN-based platform aggregating AI tools with Ollama & Mistral AI integration.</div>
+        <div class="card-pills"><span class="tech-tag">React</span><span class="tech-tag">Ollama</span><span class="tech-tag">Express</span></div>
+      </div>
+    </div>
+    <div class="project-card" style="grid-column:1/-1;">
+      <div class="card-img" style="background:linear-gradient(135deg,#080810,#12121f);color:var(--a2);height:120px;">✦ 3D</div>
+      <div class="card-body">
+        <div class="card-tag">Portfolio</div>
+        <div class="card-title">My 3D Portfolio</div>
+        <div class="card-desc">Interactive 3D developer portfolio built with Three.js, Next.js & GSAP for immersive animations.</div>
+        <div class="card-pills"><span class="tech-tag">Next.js</span><span class="tech-tag">Three.js</span><span class="tech-tag">GSAP</span><span class="tech-tag">TypeScript</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-label">Stack</div>
+  <h2 class="section-title">Skills & Technologies</h2>
+  <p class="section-sub">Technologies I work with to build full-stack web applications.</p>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-icon">⚛️</div><div class="skill-name">React / Next.js</div><div class="skill-level">Advanced</div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🟦</div><div class="skill-name">TypeScript</div><div class="skill-level">Advanced</div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🟢</div><div class="skill-name">Node.js / Express</div><div class="skill-level">Advanced</div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🍃</div><div class="skill-name">MongoDB</div><div class="skill-level">Intermediate</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">Tailwind CSS</div><div class="skill-level">Advanced</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+    <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">Three.js / GSAP</div><div class="skill-level">Intermediate</div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="padding:80px 60px;">
+  <div class="grid-bg"></div>
+  <div class="section-label">Journey</div>
+  <h2 class="section-title">Experience</h2>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-content">
+        <div class="exp-company">Freelance</div>
+        <div class="exp-role">Full Stack Web Developer</div>
+        <div class="exp-date">2023 – Present</div>
+        <div class="exp-desc">Building full-stack web applications for clients. Specializing in React, Next.js and Node.js with a focus on modern UI/UX and performance.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot-col"><div class="exp-dot"></div></div>
+      <div class="exp-content">
+        <div class="exp-company">Self-Taught</div>
+        <div class="exp-role">Learning & Building</div>
+        <div class="exp-date">2022 – 2023</div>
+        <div class="exp-desc">Started web development journey. Built projects using HTML, CSS, JavaScript, React and Node.js. Explored 3D web with Three.js and GSAP animations.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label">Get in Touch</div>
+  <h2 class="section-title" style="text-align:center;">Let's Work Together</h2>
+  <div class="contact-box">
+    <div class="contact-title">Open to Opportunities</div>
+    <div class="contact-sub">Looking for a passionate full-stack developer? I'd love to hear about your project and how I can help bring it to life.</div>
+    <button class="contact-btn">Send a Message</button>
+    <div class="contact-email">or email at <a href="mailto:divythakkar318@gmail.com">divythakkar318@gmail.com</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2025 Divy Thakkar. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">GitHub</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>

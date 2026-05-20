@@ -1,4 +1,3 @@
-import SlideShow from "@/components/slide-show";
 import { FullscreenIframe } from "@/components/sections/fullscreen-iframe";
 import { Button } from "@/components/ui/button";
 import { TypographyH3, TypographyP } from "@/components/ui/typography";
@@ -191,14 +190,18 @@ const projects: Project[] = [
     github: "https://github.com/ThakkarDivy11/3d-portfolio",
     content: (
       <div>
-        <TypographyP className="font-mono text-2xl text-center">
-          Interactive 3D developer portfolio
-        </TypographyP>
-        <TypographyP className="font-mono">
-          Built with Three.js + React + GSAP for immersive 3D experience and animations.
-        </TypographyP>
-        <ProjectsLinks live="https://3d-portfolio-mu-plum.vercel.app/" repo="https://github.com/ThakkarDivy11/3d-portfolio" />
-        <SlideShow images={["/assets/projects-screenshots/portfolio/cabzee.png"]} />
+        <div className="px-8 w-full overflow-hidden">
+          <TypographyP className="font-mono text-2xl text-center">
+            Interactive 3D developer portfolio
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Built with Three.js + React + GSAP for immersive 3D experience and animations.
+          </TypographyP>
+          <ProjectsLinks live="https://3d-portfolio-mu-plum.vercel.app/" repo="https://github.com/ThakkarDivy11/3d-portfolio" />
+        </div>
+        <div className="mt-4">
+          <FullscreenIframe src="/portfolio-preview.html" title="My 3D Portfolio Live Preview" />
+        </div>
       </div>
     ),
   },
