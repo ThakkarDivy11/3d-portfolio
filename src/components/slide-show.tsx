@@ -72,13 +72,15 @@ const SlideShow = ({ images }: { images: string[] }) => {
             <DialogDescription>Zoomed screenshot</DialogDescription>
           </DialogHeader>
           <motion.div>
-            <Image
-              src={selectedImage || ''}
-              alt="screenshot"
-              width={1080}
-              height={1080}
-              className="w-full rounded-lg h-auto max-h-[90vh]"
-            />
+            {selectedImage ? (
+              <Image
+                src={selectedImage}
+                alt="screenshot"
+                width={1080}
+                height={1080}
+                className="w-full rounded-lg h-auto max-h-[90vh]"
+              />
+            ) : null}
           </motion.div>
         </DialogContent>
       </Dialog>

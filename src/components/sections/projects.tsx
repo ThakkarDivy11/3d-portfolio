@@ -70,15 +70,20 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15 });
   const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15 });
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
+
+  const imageX = useTransform(mouseXSpring, [-0.5, 0.5], [-12, 12]);
+  const imageY = useTransform(mouseYSpring, [-0.5, 0.5], [-12, 12]);
+  const textX = useTransform(mouseXSpring, [-0.5, 0.5], [8, -8]);
+  const textY = useTransform(mouseYSpring, [-0.5, 0.5], [8, -8]);
 
   const spotlightX = useMotionValue(0);
   const spotlightY = useMotionValue(0);
   const spotlightXSpring = useSpring(spotlightX, { stiffness: 200, damping: 25 });
   const spotlightYSpring = useSpring(spotlightY, { stiffness: 200, damping: 25 });
 
-  const backgroundTemplate = useMotionTemplate`radial-gradient(220px circle at ${spotlightXSpring}px ${spotlightYSpring}px, hsla(20, 100%, 70%, 0.12), transparent 85%)`;
+  const backgroundTemplate = useMotionTemplate`radial-gradient(220px circle at ${spotlightXSpring}px ${spotlightYSpring}px, hsla(20, 100%, 70%, 0.16), transparent 85%)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -102,9 +107,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center w-full">
       <ResponsiveDialog>
-        <ResponsiveDialogTrigger className="bg-transparent flex justify-center">
+        <ResponsiveDialogTrigger className="bg-transparent flex justify-center w-full">
           <motion.div
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
@@ -112,48 +117,54 @@ const ProjectCard = ({ project }: { project: Project }) => {
               rotateX,
               rotateY,
               transformStyle: "preserve-3d",
-              aspectRatio: "3/2"
             }}
-            className="relative w-[400px] h-auto rounded-lg overflow-hidden group cursor-pointer border border-border/50 dark:border-border/30 shadow-md hover:shadow-xl transition-all duration-300 bg-background"
+            className="relative w-full max-w-[400px] aspect-[16/9] rounded-xl overflow-hidden group border border-border/50 dark:border-border/30 shadow-md hover:shadow-[0_0_30px_rgba(253,186,116,0.12)] hover:border-brand/30 dark:hover:border-brand/40 transition-all duration-300 bg-background dark:bg-card/50 backdrop-blur-sm"
           >
             {/* Spotlight Overlay */}
             <motion.div
               style={{
                 background: backgroundTemplate,
               }}
-              className="absolute inset-0 z-10 pointer-events-none"
+              className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             />
             
-            {/* Image */}
-            <Image
-              className="absolute w-full h-full top-0 left-0 group-hover:scale-[1.03] transition-transform duration-500"
-              src={project.src}
-              alt={project.title}
-              width={300}
-              height={300}
+            {/* Parallax Image Wrapper */}
+            <motion.div
               style={{
-                transform: "translateZ(8px)"
+                x: imageX,
+                y: imageY,
               }}
-            />
+              className="absolute inset-0 w-full h-full scale-[1.08] pointer-events-none"
+            >
+              <Image
+                className="w-full h-full object-cover object-top group-hover:scale-[1.05] transition-transform duration-500"
+                src={project.src}
+                alt={project.title}
+                fill
+                sizes="(max-w-md) 100vw, 400px"
+                priority
+              />
+            </motion.div>
             
             {/* Card Content Overlay */}
-            <div 
-              className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-background via-background/90 to-transparent pointer-events-none z-20"
-              style={{
-                transform: "translateZ(16px)"
-              }}
-            >
-              <div className="flex flex-row h-full items-end justify-between p-6">
+            <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-background via-background/95 to-transparent pointer-events-none z-20">
+              <motion.div 
+                style={{
+                  x: textX,
+                  y: textY,
+                }}
+                className="flex flex-row h-full items-end justify-between p-6 pointer-events-none"
+              >
                 <div className="flex flex-col items-start">
-                  <div className="text-lg text-left font-bold">{project.title}</div>
-                  <div className="text-xs mt-1 bg-primary text-primary-foreground rounded-lg w-fit px-2 py-0.5">
+                  <div className="text-lg text-left font-bold text-foreground">{project.title}</div>
+                  <div className="text-xs mt-1 bg-primary text-primary-foreground dark:bg-brand dark:text-brand-foreground rounded-lg w-fit px-2 py-0.5 font-medium">
                     {project.category}
                   </div>
                 </div>
-                <div className="flex items-center text-xs font-semibold text-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
-                  View details <ArrowUpRight className="w-3 h-3 ml-1" />
+                <div className="flex items-center text-xs font-semibold text-brand opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  View details <ArrowUpRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </ResponsiveDialogTrigger>
