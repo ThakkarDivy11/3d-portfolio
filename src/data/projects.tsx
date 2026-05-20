@@ -161,7 +161,7 @@ const projects: Project[] = [
           Fast and dynamic processing using modern MERN stack architecture.
         </p>
 
-        <SlideShow images={[`/assets/projects-screenshots/aicollection/landing.png`]} />
+        <FullscreenIframe src="/aicollection-loader.html" title="AI Collection Engine Live Simulation" />
       </div>
     ),
   },
